@@ -64,7 +64,7 @@ if (!saved?.ok) throw new Error(saved?.error ?? 'No native answer');
 const alarmId = saved.data.alarm.id;
 ```
 
-The declared output variable is the second SDK argument. Await one call before making another call to the same route. SDK 1.0.28 watches that variable for up to 30 seconds; an absent answer returns `undefined`. Native errors are envelopes with `ok: false`, so check them explicitly.
+The declared output variable is the second SDK argument. SDK 1.0.28 returns an object whose matching property contains the full native envelope: `ok`, `code`, `error` and `data`, with runtime metadata. Native `ok: false` answers resolve the promise, so check `ok` before reading `data`; `code` identifies the failure and `error` contains its message. A single watched value becomes `undefined` after 30 seconds without an answer. Await calls using the same output variable sequentially.
 
 ## Routes
 

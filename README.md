@@ -1,6 +1,6 @@
 # Alarms for Despia V3
 
-Source preview for Despia V3. This snapshot requires the runtime update currently awaiting release and an approved extension-enabled native build. Uploading these files does not change an installed app.
+Source preview for Despia V3. The runtime update and automatic discovery rollout are awaiting release. Rebuild and install the native app to include these files; uploading them does not change an installed app.
 
 Add native alarms, timers and challenge workflows to a Despia V3 app. The extension uses Apple's AlarmKit on iOS 26 and later, and Android's AlarmManager with a foreground audio service. Your app supplies its own screen and challenge logic, including progress from a push-up detector, a QR scanner or any other workflow you build.
 
@@ -17,13 +17,15 @@ Use the same JavaScript SDK calls from React, Vue, Svelte, Next.js, TanStack, HT
    { "extensions": ["alarms"] }
    ```
 
-3. Edit `ios.app.info_plist.NSAlarmKitUsageDescription` in `alarms/manifest.json` to explain your app's alarms. The V3 extension update under review lets the approved manifest supply this text when the app's build configuration has none. Existing app-configured text takes priority. This extension depends on that update.
-4. Rebuild the native app through a build that supports V3 extensions. Replacing files on your website does not modify an installed app.
+3. Edit `ios.app.info_plist.NSAlarmKitUsageDescription` in `alarms/manifest.json` to explain your app's alarms. The V3 extension update under review lets the verified manifest supply this text when the app's build configuration has none. Existing app-configured text takes priority. This extension depends on that update.
+4. Rebuild and install the native app with this extension. Replacing files on your website does not modify an installed app.
 5. Install the JavaScript SDK in your web app:
 
    ```sh
    npm install despia-native
    ```
+
+Signed build verification binds source hashes, dependency pins, app identity and final artifacts. It is separate from human code review and does not require a per-app enrollment switch.
 
 The Android module declares its own permissions and private components. Exact alarm access, notification permission and full-screen access have separate system controls. The app must qualify for any applicable store requirements. The iOS countdown widget target is included by the manifest.
 

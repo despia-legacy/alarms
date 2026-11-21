@@ -4,7 +4,7 @@ Source preview for Despia V3. The runtime update and automatic discovery rollout
 
 Add native alarms, timers and challenge workflows to a Despia V3 app. The extension uses Apple's AlarmKit on iOS 26 and later, and Android's AlarmManager with a foreground audio service. Your app supplies its own screen and challenge logic, including progress from a push-up detector, a QR scanner or any other workflow you build.
 
-This extension is being prepared for the Despia V3 runtime. Runtime updates and hosted extension support are pending deployment. iOS alarm delivery is not yet tested on devices. First-party V4 support comes through the new package registry, with a separate API.
+This extension is being prepared for the Despia V3 runtime. Runtime updates and hosted extension support are pending deployment. Controlled iOS device verification is described below. First-party V4 support comes through the new package registry, with a separate API.
 
 Use the same JavaScript SDK calls from React, Vue, Svelte, Next.js, TanStack, HTML5 or a web app made with Lovable, Base44, Replit or another builder. Despia must wrap the app and include the native extension in its build. In a server-rendered app, call the SDK from a client component, mounted hook or button handler.
 
@@ -133,7 +133,7 @@ On older iOS, system alarms return `unsupported`. You can explicitly choose `del
 
 Android uses exact alarm special access and a visible foreground service while ringing. Full-screen presentation depends on system access and notification settings. Its native ring screen can open the app, snooze or stop an alarm. A boot receiver re-arms future alarms after the device unlocks. It records a missed one-shot alarm rather than starting media playback from boot. Repeating local alarms are recalculated on boot, clock and time-zone changes. Force-stop, revoked access and manufacturer restrictions can prevent delivery.
 
-iOS alarm delivery, locked-screen presentation, reboot recovery, custom sounds and store distribution still need verification before use in a released app.
+Tested on an iPhone 15 running iOS 26.1: authorization, countdown pause/resume, background alarm delivery, native Snooze and Stop, Open app, app-reported fractional challenge progress, recovery after the app process ended, and cleanup. Locked-screen presentation, reboot recovery, weekly/DST timing, custom sound quality, older-iOS fallback and store distribution remain unverified.
 
 ## License
 
